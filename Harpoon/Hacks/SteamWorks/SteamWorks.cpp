@@ -239,7 +239,7 @@ __forceinline void DDOSPlayer(CSteamID& SteamID) {
 	if (!pBuffer) {
 		Debug::QuickPrint("Setting Up Config");
 		pBuffer = (const char*)malloc(1);
-		Config.SetInt32(ESteamNetworkingConfigValue::k_ESteamNetworkingConfig_NagleTime, config->mmcrasher.nagleTime * 1000);
+		Config.SetInt32(ESteamNetworkingConfigValue::khttps://github.com/Harpoon-Inc/Harpoon/issues/3_ESteamNetworkingConfig_NagleTime, config->mmcrasher.nagleTime * 1000);
 		Config.SetInt32(ESteamNetworkingConfigValue::k_ESteamNetworkingConfig_SendRateMax, 0); // Unlimited
 		Config.SetInt32(ESteamNetworkingConfigValue::k_ESteamNetworkingConfig_SendBufferSize, config->mmcrasher.bufferSize);
 		Config.SetInt32(ESteamNetworkingConfigValue::k_ESteamNetworkingConfig_MTU_PacketSize, config->mmcrasher.MTU);
@@ -962,7 +962,7 @@ int __fastcall OurSteamWorks::hk_RetrieveMessage(void* ecx, void* edx, uint32_t*
 
 
 
-
+#if 0
 	switch (type)
 	{
 	case k_EMsgGCCStrike15_v2_ServerVarValueNotificationInfo:
@@ -981,7 +981,7 @@ int __fastcall OurSteamWorks::hk_RetrieveMessage(void* ecx, void* edx, uint32_t*
 		DumpProtobufMessage<CMsgGCCStrike15_v2_MatchmakingGC2ClientUpdate>((char*)pubDest + 8, (size_t)pcubMsgSize - 8);
 		break;
 	}
-
+#endif
 	
 	
 
@@ -1201,12 +1201,14 @@ int __fastcall OurSteamWorks::hk_SendMessage(void* ecx, void* edx, uint32_t unMs
 
 	switch (type)
 	{
+#if 0
 	case k_EMsgGCCStrike15_v2_ServerVarValueNotificationInfo:
 		CON(DumpProtobufMessage<CMsgGCCStrike15_v2_ServerVarValueNotificationInfo>((char*)(((std::uintptr_t)pubData) + 8), (unsigned int)(cubData - 8)).c_str());
 		break;
 	case k_EMsgGCCStrike15_v2_ClientVarValueNotificationInfo:
 		CON(DumpProtobufMessage<CMsgGCCStrike15_v2_ClientVarValueNotificationInfo>((char*)(((std::uintptr_t)pubData) + 8), (unsigned int)(cubData - 8)).c_str());
 		break;
+#endif
 	case k_EMsgGCCStrike15_v2_ClientReportValidation:
 	{
 		{
